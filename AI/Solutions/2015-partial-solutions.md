@@ -7,7 +7,6 @@ header-includes:
     - \usepackage{tikz-qtree}
     - \usepackage{float}
 ---
-> The in-class correction of last year's (I think) exam paper
 
 # Denote by $\dagger$ the basic AI problem of *an agent acting intelligently in its environment*.
 
