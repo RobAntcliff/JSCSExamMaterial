@@ -54,6 +54,7 @@ r2(Zeros,A,C) :- A=[1|B], r2(Zeros,B,C).
 mkList(0, []).
 mkList(N, [N|List]) :- Nnew is N-1, Nnew >= 0, mkList(Nnew, List).
 
+%double(0) --> [].
 double(0, B, B).
 %double(C) --> {mkList(C, L), member(X, L), Cnew is C-X}, [X], double(Cnew).
 double(C, A, D) :- mkList(C,L), member(X,L), Cnew is C-X, A=[X|B], double(Cnew, B, D).
