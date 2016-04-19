@@ -19,7 +19,7 @@ my_init (x:xs) = x: init xs
 my_break :: (a -> Bool) -> [a] -> ([a],[a])
 my_break _ [] = ([],[])
 my_break f (x:xs)
-  | f x = ( fs , x:ts )
+  | f x = ( [] , x:xs )
   | otherwise = ( x:fs , ts )
     where (fs,ts) = my_break f xs
 
