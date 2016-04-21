@@ -14,10 +14,6 @@ lkp key ((tkey,tval):rest) =
     if key == tkey
         then Just tval
         else lkp key rest
-divBy :: Int -> Int -> Maybe Int
-divBy a b 
-    | b == 0 = Nothing
-    | otherwise = Just (a `div` b)
 
 eval :: Dict -> Expr -> Maybe Int
 eval _ (K i) = Just i
@@ -27,10 +23,12 @@ eval d (Add e1 e2) = do
     b <- eval d e2
     return (a + b)
 eval d (Dvd e1 e2) = do
-    a <- eval d e1
     b <- eval d e2
-    c <- divBy a b
-    return c
+    if b == 0
+        then fail ""
+        else do
+            a <- eval d e2
+            return (a `div` b)
 eval d (Let v e1 e2) = case i of 
        (Just a) -> eval (ins v a d) e2
        Nothing -> Nothing
