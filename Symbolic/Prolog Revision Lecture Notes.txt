@@ -1,0 +1,80 @@
+Prolog:
+Q3 2015
+
+A). 
+s --> u(X),
+      u(X),
+	  [2],
+	  v(X).
+
+u(0) --> [].
+u(X) --> [0], u(X).
+u(s(X)) --> [1], u(X)
+
+v(0) --> [].
+v(X) --> [1], v(X).
+v(s(X)) --> [0], v(X).		  
+
+C). 
+S(A,D) :- u(X,A,B),
+          u(X,B,[2|C]),
+          v(X,C,D).
+
+u(0,A,A).
+u(X,[0|A],B) :- u(X,A,B).
+u(s(X),[1|A],B) :- u(X,A,B).
+
+v(0,A,A).
+v(X,[1|A],B) :- v(X,A,B).
+v(s(X),[0|A],B) :- v(X,A,B).
+
+D).
+mkList(0,[]).
+mkList(N,[N|L]) :- integer(N), N>0, M is N-1, mkList(M,L).
+
+s(X) --> Y is X+X, t(Y).
+t(0) --> [].
+t(Sum) --> {mkList(Sum,Sumlist), member(X,SumList)}, [X], {NewSum is Sum-X}, t(NewSum).
+
+------------------------------------------------------------------------------------------
+Q1 (a)
+i, ii facts
+iii rule
+iii best as it allows you to query lamb and white independently.
+
+(B).
+i.    no.
+ii.   X = 3+2
+iii.  no.
+iv.   instanciation error.
+v.    X = 5.
+vi.   no.
+vii.  yes.
+viii. yes.
+
+(C).
+split(_,[],[],[]).
+split(N,[H|T],[H|Small],Big) :- H < N, split(N,T,Small,Big).
+split(N,[H|T],Small,[H|Big]) :- N =< H, split(N,T,Small,Big).
+
+(D).
+sumOfPowers(N,S) :- sop(N,0,S).
+sop(0,S,S).
+sop(N,Ac,S) :- N>1, N1 is N-1,
+               power(N,N,PN),
+               NAc is Ac + PN,
+               sop(N1,NAc,S).
+
+-------------------------------------------------------------------------------------------
+Q2 (B) Red.
+(C).
+last(X,[X])
+last(X,[_|[H|T]]) :- last(X,[H|T]).
+
+(D).
+multiple(X,[X|L]) :- member(X,L).
+multiple(X,[_|L]) :- multiple(X,L).
+
+(E).
+next(A,B,[A,B|_]).
+next(A,B,[_|T]) :- next(A,B,T).
