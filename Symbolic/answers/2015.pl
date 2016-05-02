@@ -23,8 +23,18 @@ multiple(X, [_|T]) :- multiple(X, T).
 %e) next(A,B,List)
 next(A, B, [A,B|_]).
 next(A, B, [_|T]) :- next(A,B,T).
-%f) next3(A1,A2,A3,B1,B2,B3,L1,L2,L3)
-% TO-DO
+
+%f) 
+% next3(A1,A2,A3,B1,B2,B3,L1,L2,L3)
+% backtrack from list L3
+next3(A1,A2,A3,A1,A2,B3,L1,L2,L3) :- mem3(A1,A2,A3,L1,L2,L3), next(A3,B3,L3).
+
+% backtrack from list L2
+next3(A1,A2,Z3,A1,B2,A3,L1,L2,L3) :- mem3(A1,A2,Z3,L1,L2,L3), last(Z3,L3), first(A3,L3), next(A2,B2,L2).
+
+% backtrack from list L1
+next3(A1,Z2,Z3,B1,A2,A3,L1,L2,L3) :- mem3(A1,Z2,Z3,L1,L2,L3), last(Z2,L2), last(Z3,L3), first(A2,L2),
+                                      first(A3,L3), next(A1,B1,L1).
 
 %Q3
 %a)
