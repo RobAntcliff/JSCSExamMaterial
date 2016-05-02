@@ -14,6 +14,23 @@ sop(X, Sum, S) :- Snew is S+(X**X), Xnew is X-1, sop(Xnew, Sum, Snew).
 %a) member(X,List)
 member(X, [X|_]).
 member(X, [H|T]) :- member(X, T).
+%b) 
+%   memb(X, [X|L]) :- !.
+%   memb(X, [Y|L]) :- memb(X, L).
+% The above cut is a red cut, since a different result is returned if it is removed.
+% eg. with the cut:
+%   ?- memb(X, [1, 2, 3]).
+%      X = 1;
+%      no
+% If we remove the cut, now we have:
+%   memb(X, [X|L]).
+%   memb(X, [Y|L]) :- memb(X, L).
+% The same query as before (but without the cut this time):
+%   ?- memb(X, [1, 2, 3]).
+%      X = 1;
+%      X = 2;
+%      X = 3;
+%      no
 %c) last(X,List)
 last(X, [X]).
 last(X, [_|T]) :- last(X, T).
