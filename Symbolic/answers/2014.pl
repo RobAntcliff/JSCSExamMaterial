@@ -33,7 +33,7 @@ setInt(L1,L2,LB) :- append(L1,L2,L3), setEq(LB, L3).
 %f) setInt(List1,List2,ListBoth)
 setInt2(L1,L2,LB) :- append(L1,L2,L3), setEq2(LB,L3).
 %g)
-% TO DO
+if(A,B,C) :- A, !, B ; C.
 %h) maxHead(+List1, ?List2)
 max(X, [X]).
 max(H, [H|T]) :- max(M, T), H >= M.
@@ -43,6 +43,12 @@ remMax(H, [H|T], T).
 remMax(X, [H|T], [H|T2]) :- remMax(X, T, T2).
 
 maxHead(L1, [H|T]) :- max(H, L1), remMax(H, L1, T).
+
+maxHead2([H|T], Result) :- accmaxHead2(H, [], T, Result).
+
+accmaxHead2(H, S, [], [H|S]).
+accmaxHead2(C, S, [H|T], Result) :- C >= H, !, accmaxHead2(C, [H|S], T, Result);
+                              accmaxHead2(H, [C|S], T, Result).
 
 %Q3
 %a) 

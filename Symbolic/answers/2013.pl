@@ -32,3 +32,26 @@ minus(X,Y) :- add2(X,0,A), negate(A,Y).
 negate(0,0).
 negate(p(X),s(Y)) :- negate(X,Y).
 negate(s(X),p(Y)) :- negate(X,Y).
+
+%q2
+%a)
+ifThenElse(A,B,C) :- A, !, B ; C.
+%b)
+no_duplicates([X],[X]).
+no_duplicates([H|T1], [H|T2]) :- \+member(H, T1), no_duplicates(T1,T2).
+no_duplicates([H|T], L2) :- member(H, T), no_duplicates(T, L2).
+%c)
+minus(L,[],L).
+minus([],_,[]).
+minus([H|T], L, [H|T2]) :- \+member(H,L), minus(T,L,T2).
+minus([H|T], L, L3) :- member(H,L), minus(T, L, L3).
+%d)
+%TODO
+
+%q3
+%d)
+flatten(List,Flattened) :- fl(List,Flattened,[]).
+
+fl([]) --> [].
+fl([H|T]) --> fl(H), fl(T).
+fl(H) --> [H].
