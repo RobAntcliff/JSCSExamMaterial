@@ -61,7 +61,11 @@ ones(N) --> [1], ones(N0), {N is N0+1}.
 twos(0) --> [].
 twos(N) --> [2], twos(N0), {N is N0+1}.
 %b)
-% TO DO
+sb --> [0], s, [2].
+sb --> a.
+ab --> [1], a, [2].
+ab --> b.
+bb --> [].
 
 %d) s --> [0], s, [2].
 s1(A, D) :- A=[0|B], s1(B, C), C=[2|D].
