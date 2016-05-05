@@ -33,7 +33,11 @@ setInt(L1,L2,LB) :- append(L1,L2,L3), subset(LB, L3).
 %f)
 % TO DO
 %g)
-% TO DO
+%courtesy of tomas and Tim Fernando
+if(A,B,C) :-
+    A, !, % if a
+    B;    % then b
+    C.    % else c
 %h) maxHead(+List1, ?List2)
 max(X, [X]).
 max(H, [H|T]) :- max(M, T), H >= M.
