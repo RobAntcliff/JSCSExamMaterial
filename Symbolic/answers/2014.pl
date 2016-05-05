@@ -29,9 +29,9 @@ setEq2(L1,L2) :- setof(C, member(C, L1),S), setof(B, member(B,L2),S).
 %d)
 nonmember(X,L) :- \+member(X,L).
 %e) setInt(List1,List2,ListBoth)
-setInt(L1,L2,LB) :- append(L1,L2,L3), subset(LB, L3).
-%f)
-% TO DO
+setInt(L1,L2,LB) :- append(L1,L2,L3), setEq(LB, L3).
+%f) setInt(List1,List2,ListBoth)
+setInt2(L1,L2,LB) :- append(L1,L2,L3), setEq2(LB,L3).
 %g)
 % TO DO
 %h) maxHead(+List1, ?List2)
