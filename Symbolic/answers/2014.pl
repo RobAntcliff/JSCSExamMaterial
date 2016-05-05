@@ -33,7 +33,11 @@ setInt(L1,L2,LB) :- append(L1,L2,L3), setEq(LB, L3).
 %f) setInt(List1,List2,ListBoth)
 setInt2(L1,L2,LB) :- append(L1,L2,L3), setEq2(LB,L3).
 %g)
-if(A,B,C) :- A, !, B ; C.
+%courtesy of tomas and Tim Fernando
+if(A,B,C) :-
+    A, !, % if a
+    B;    % then b
+    C.    % else c
 %h) maxHead(+List1, ?List2)
 max(X, [X]).
 max(H, [H|T]) :- max(M, T), H >= M.
@@ -63,7 +67,11 @@ ones(N) --> [1], ones(N0), {N is N0+1}.
 twos(0) --> [].
 twos(N) --> [2], twos(N0), {N is N0+1}.
 %b)
-% TO DO
+sb --> [0], s, [2].
+sb --> a.
+ab --> [1], a, [2].
+ab --> b.
+bb --> [].
 
 %d) s --> [0], s, [2].
 s1(A, D) :- A=[0|B], s1(B, C), C=[2|D].
