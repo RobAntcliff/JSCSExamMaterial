@@ -65,7 +65,7 @@ r(Zeros) --> [0], r(Z), {Zeros is Z+1}.
 r(Zeros) --> [1], r(Zeros).
 
 %c)
-s2(A,B) :- A-B is [2].
+s2([2|B],B).
 s2(A,D) :- l2(Ones, A, B), B=[2|C], r2(Zeros, C, D), Ones is 2*Zeros.
 
 l2(0,A,A).

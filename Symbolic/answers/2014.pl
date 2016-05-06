@@ -29,9 +29,9 @@ setEq2(L1,L2) :- setof(C, member(C, L1),S), setof(B, member(B,L2),S).
 %d)
 nonmember(X,L) :- \+member(X,L).
 %e) setInt(List1,List2,ListBoth)
-setInt(L1,L2,LB) :- append(L1,L2,L3), subset(LB, L3).
-%f)
-% TO DO
+setInt(L1,L2,LB) :- append(L1,L2,L3), setEq(LB, L3).
+%f) setInt(List1,List2,ListBoth)
+setInt2(L1,L2,LB) :- append(L1,L2,L3), setEq2(LB,L3).
 %g)
 %courtesy of tomas and Tim Fernando
 if(A,B,C) :-
@@ -47,6 +47,12 @@ remMax(H, [H|T], T).
 remMax(X, [H|T], [H|T2]) :- remMax(X, T, T2).
 
 maxHead(L1, [H|T]) :- max(H, L1), remMax(H, L1, T).
+
+maxHead2([H|T], Result) :- accmaxHead2(H, [], T, Result).
+
+accmaxHead2(H, S, [], [H|S]).
+accmaxHead2(C, S, [H|T], Result) :- C >= H, !, accmaxHead2(C, [H|S], T, Result);
+                              accmaxHead2(H, [C|S], T, Result).
 
 %Q3
 %a) 
