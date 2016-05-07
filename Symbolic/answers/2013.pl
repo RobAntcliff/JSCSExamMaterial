@@ -52,7 +52,7 @@ minus([H|T], L, L3) :- member(H,L), minus(T, L, L3).
 %b)
 s --> t(a, A), t(b, B), t(c, C), {B is A + C}.
 t(_, 0) --> [].
-t(E, Count) --> [X], {X=E}, t(E, SubCount), {Count is SubCount + 1}.
+t(E, Count) --> [E], t(E, SubCount), {Count is SubCount + 1}.
 
 %d)
 flatten(List,Flattened) :- fl(List,Flattened,[]).
