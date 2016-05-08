@@ -2,7 +2,10 @@
 function x = GaussJordan(a, b)
     len = length(a)
 
-	% forward elimation
+    %%%%%%%%%%%%%%%%%%%%%%%
+    % Forward Elimination %
+    %%%%%%%%%%%%%%%%%%%%%%%
+    
 	for i = 1:len % for each row 1 to N
         sub = a([i:end], [i:end]); % consider the sub matrix
         [pivot p_row] = max(sub(:, 1)); % pivot index in sub matrix
@@ -15,16 +18,21 @@ function x = GaussJordan(a, b)
             b(j) = b(j) - b(i) * times; % mul row in b
         end
     end
-
     % if a is a 3x3 matrix it now looks like:
     % b c d
     % 0 f g
     % 0 0 h
 
-    % back substitution
-    elems = 0 % last row has 1 elem, next has 2 ...
+    %%%%%%%%%%%%%%%%%%%%%
+    % Back Substitution %
+    %%%%%%%%%%%%%%%%%%%%%
+
+    % now can calculate x(3) since it only has one unknown.
+    % then x(2) since we know x(3).
+    % then (x1) since we know x(2) and x(3).
+    elems = 0
     for i = len:-1:1 % starting at bottom row
-        start = (len - elems) % position of first non-zero in row of a
+        start = (len - elems) % position of first non-zero in row
         sum = b(i) 
         for j = (start + 1):len
             sum = sum -(a(i, j) * x(j))
