@@ -1,5 +1,9 @@
+% !!! This isn't Gauss Jordan. It's just Gaussian elimination with partial pivoting. !!!
+% Here's a link for what's actual being looked for:
+% https://people.richland.edu/james/lecture/m116/matrices/pivot.html
+
 % Given a square matrix a of length N and a vector b also of length N
-function x = GaussJordan(a, b)
+function x = Gauss(a, b)
     len = length(a)
 
     %%%%%%%%%%%%%%%%%%%%%%%
